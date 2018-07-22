@@ -1,0 +1,6 @@
+{
+	"puppet::server": true,
+	"puppet::server_external_nodes": "/usr/local/bin/puppet_enc.py"
+	"puppet::server_foreman": false,
+	"puppet::server_reports": "store"
+}
