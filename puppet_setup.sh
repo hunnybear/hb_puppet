@@ -18,10 +18,11 @@ fi
 
 mkdir "${ENV_PATH}"
 
-git clone "h6x6nmark@tylerjachetta.net:/home/h6x6nmark/git/hb_puppet" "/etc/puppetlabs/code/environments/${BOOTSTRAP_ENV}"
+git clone "https://github.com/hunnybear/hb_puppet.git" "/etc/puppetlabs/code/environments/${BOOTSTRAP_ENV}"
 puppet module install --environment "$BOOTSTRAP_ENV" puppet-hiera
 puppet module install --environment "$BOOTSTRAP_ENV" theforeman-puppet
 puppet module install --environment "$BOOTSTRAP_ENV" theforeman-git
-
+puppet module install --environment "$BOOTSTRAP_ENV" stahnma-epel --version 1.3.1
+	
 # WIP
 # puppet agent --environment "${BOOTSTRAP_ENV}" 
