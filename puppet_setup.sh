@@ -21,11 +21,11 @@ mkdir "${ENV_PATH}"
 # TODO come up with some good way for modules with dependencies (that thus 
 # shouldn't just be git submodule'd) to be regularly checked for updates
 
-git clone "https://github.com/hunnybear/hb_puppet.git" "/etc/puppetlabs/code/environments/${BOOTSTRAP_ENV}"
+git clone --recursive "https://github.com/hunnybear/hb_puppet.git" "/etc/puppetlabs/code/environments/${BOOTSTRAP_ENV}"
 puppet module install --environment "$BOOTSTRAP_ENV" puppet-hiera
 puppet module install --environment "$BOOTSTRAP_ENV" theforeman-puppet
 puppet module install --environment "$BOOTSTRAP_ENV" theforeman-git
 puppet module install --environment "$BOOTSTRAP_ENV" stahnma-epel --version 1.3.1
 
-# WIP
-# puppet agent --environment "${BOOTSTRAP_ENV}" 
+# WIP, eventually remove noop
+puppet apply --noop --environment bootstrap -e "include role_puppetmaster::bootstrap" --show_diff
