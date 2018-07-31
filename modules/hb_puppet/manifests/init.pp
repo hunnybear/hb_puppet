@@ -1,9 +1,9 @@
 class hb_puppet() {
-	include python
+	include hb_python
 
-	python::pip{ 'hb_lib':
-		# TODO better ensure/versioning
-		ensure	=> present,
-		
+	# TODO datafy url
+	python::pip{'puppet_tools':
+		url	=> 'git+https://github.com/hunnybear/puppet_tools.git'
 	}
+
 }
