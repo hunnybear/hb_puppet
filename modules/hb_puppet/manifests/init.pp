@@ -14,7 +14,8 @@ class hb_puppet() {
 
 	# TODO datafy url
 	python::pip{'puppet_tools':
-		url	=> 'git+https://github.com/hunnybear/puppet_tools.git'
+		url		=> 'git+https://github.com/hunnybear/puppet_tools.git',
+		require	=> Class['hb_python'],
 	}
 
 }

@@ -1,6 +1,5 @@
 class hb_python() {
-	include puppet
-	include hb_python
+	include python
 
 	python::pip{ 'hb_lib':
 		# TODO better ensure/versioning
