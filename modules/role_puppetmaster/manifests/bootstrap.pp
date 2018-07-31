@@ -11,10 +11,7 @@ class role_puppetmaster::bootstrap() {
 	}
 
 	# This is copied from the roles/puppetmaster.json
-	$enc_path = "${::puppet::/puppet_enc.py'
+	$enc_path = "${::puppet::dir}/puppet_enc.py"
 
-	class { 'hb_puppet::enc':
-		path	=> $::puppet::
-
-	}	
+		
 }
