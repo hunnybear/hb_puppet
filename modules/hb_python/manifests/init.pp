@@ -2,8 +2,9 @@ class hb_puppet() {
 	include puppet
 	include hb_python
 
-	# TODO datafy url
-	python::pip{'puppet_tools':
-		url	=> 'git+https://github.com/hunnybear/puppet_tools.git'
+	python::pip{ 'hb_lib':
+		# TODO better ensure/versioning
+		ensure	=> present,	
+		url		=> 'git+https://github.com/hunnybear/py_libs.git'
 	}
 }
