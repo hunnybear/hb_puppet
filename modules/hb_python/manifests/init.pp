@@ -1,4 +1,4 @@
-class hb_puppet() {
+class hb_python() {
 	include puppet
 	include hb_python
 
