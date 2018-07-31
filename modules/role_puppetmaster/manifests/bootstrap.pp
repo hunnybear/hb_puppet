@@ -3,6 +3,8 @@
 
 class role_puppetmaster::bootstrap() {
 
+	include hb_puppet
+
 	# setup puppet config
 	class {'puppet':
 		server					=> false,
