@@ -4,6 +4,7 @@ class hb_python() {
 	python::pip{ 'hb_lib':
 		# TODO better ensure/versioning
 		ensure	=> present,	
-		url		=> 'git+https://github.com/hunnybear/py_libs.git'
+		url		=> 'git+https://github.com/hunnybear/py_libs.git',
+		require	=> Class['hb_python'],
 	}
 }
