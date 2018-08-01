@@ -5,6 +5,6 @@ class hb_python() {
 		# TODO better ensure/versioning
 		ensure	=> present,	
 		url		=> 'git+https://github.com/hunnybear/py_libs.git',
-		require	=> Class['hb_python'],
+		require	=> Package['pip'],
 	}
 }
