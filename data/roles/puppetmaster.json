@@ -3,21 +3,26 @@
 	"puppet::server_external_nodes": "${dir}/puppet_enc.py",
 	"puppet::server_foreman": false,
 	"puppet::server_reports": "store",
+	"hiera::version": 5,
+	"hiera::defaults": {
+		"datadir": "data"
+	},
+	"hiera::backends": ["json", "eyaml"],
 	"hiera::hierarchy": [
 		{
-			"name":  "Virtual yaml",
-			"path":  "virtual/%{::virtual}.yaml"
+			"name":  "Role yaml",
+			"path":  "roles/%{::role}"
 		},
         {
         	"name":  "Nodes yaml", 
         	"paths": [
-        		"nodes/%{::trusted.certname}.yaml",
+        		"nodes/%{::trusted.certname}",
         		"nodes/%{::osfamily}.yaml"
         	]
     	},
         {
         	"name":  "Default yaml file", 
-        	"path":  "common.yaml"
+        	"path":  "common"
         }
 	]
 }
