@@ -12,6 +12,8 @@ class hb_puppet() {
 		include puppet
 	}
 
+	include hiera
+
 	# TODO datafy url
 	# TODO figure out whether I can work my way around doing the hb_python (the
 	# real needed require is Package[pip], but either way) require every time I 

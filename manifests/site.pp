@@ -1,5 +1,7 @@
 node default {
-	if $role {
-		include "role_${role}"
+	if not $bootstrap{
+		if $role {
+			include "role_${role}"
+		}
 	}
 }

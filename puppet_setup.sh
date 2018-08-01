@@ -28,4 +28,6 @@ puppet module install --environment "$BOOTSTRAP_ENV" theforeman-git
 puppet module install --environment "$BOOTSTRAP_ENV" stahnma-epel --version 1.3.1
 
 # WIP, eventually remove noop
+FACTER_bootstrap=true
+FACTER_role=puppetmaster
 puppet apply --noop --environment bootstrap -e "include role_puppetmaster::bootstrap" --show_diff
