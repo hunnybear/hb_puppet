@@ -37,18 +37,52 @@ function setup_env() {
 }
 
 
-rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+function main() {
+	local OPTARG
+	local OPTIND
+	local option
 
-# for mod_passenger
-#yum install epel-release
-# Removing some of the server-specific things, because those can be added by the bootstrap
-# yum install mod_passenger puppetdb puppet-dashboard mariadb-server mod_ssl
+	local noop=0
+	local show_diff=1
 
-yum install git puppetserver
+	while getopts 'nhD' option; do
+		case "$option" in
+			"n") noop=1;;
+			"D") show_diff=0;;
+			"h") usage;exit;;
+			?)
+				echo "$argv[0]: Bad option specified, quitting"
+				usage
+				exit 1
+			;;
+		esac
+	done
 
-setup_env
+	rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
 
-# WIP, eventually remove noop
-FACTER_bootstrap=true
-FACTER_role=puppetmaster
-puppet apply --noop --environment bootstrap -e "include role_puppetmaster::bootstrap" --show_diff
+	# for mod_passenger
+	#yum install epel-release
+	# Removing some of the server-specific things, because those can be added by the bootstrap
+	# yum install mod_passenger puppetdb puppet-dashboard mariadb-server mod_ssl
+
+	yum install git puppetserver
+
+	setup_env
+
+	# WIP, eventually remove noop
+	FACTER_bootstrap=true
+	FACTER_role=puppetmaster
+	apply_args="--environment ${BOOTSTRAP_ENV}"
+	if [[ $noop -ne 0 ]]; then
+		apply_args="${apply_args} --noop"
+	fi
+	if [[ $show_diff -ne 0 ]]; then
+		apply_args="${apply_args} --show_diff"
+	fi 	
+	puppet apply ${apply_args} -e "include role_puppetmaster::bootstrap"
+
+}
+
+main "$@"
+
+
