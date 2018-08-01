@@ -15,6 +15,9 @@ function setup_env() {
 		if [[ $status_res -ne 0 ]]; then
 			cd ..
 			rm -rf "${ENV_PATH}"
+		else
+			# TODO drive with argument
+			git pull
 		fi
 	fi
 
