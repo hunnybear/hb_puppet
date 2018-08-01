@@ -1,7 +1,7 @@
 class hb_puppet() {
 	include hb_python
 
-	if $bootstrap {
+	if $::bootstrap {
 		# setup puppet config only
 		class {'puppet':
 			server					=> false,
