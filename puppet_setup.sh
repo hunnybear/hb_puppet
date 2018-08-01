@@ -19,11 +19,11 @@ function setup_env() {
 			# TODO drive with argument
 			git pull
 		fi
+	else
+		mkdir "${ENV_PATH}"
 	fi
 
 	cd $start_wd
-
-	mkdir "${ENV_PATH}"
 
 	# TODO come up with some good way for modules with dependencies (that thus 
 	# shouldn't just be git submodule'd) to be regularly checked for updates
