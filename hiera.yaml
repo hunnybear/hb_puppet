@@ -6,8 +6,8 @@ defaults:  # Used for any hierarchy level that omits these keys.
 
 hierarchy:
 
-  - name: "Bootstrap data" 
-    path: "data/bootstrap_%{facts.bootstrap}.json"
+  - name: "per-Node data" 
+    path: "data/nodes/%{trusted.certname}.json"
 
   - name: "Per-OS defaults"
     path: "os/%{facts.os.family}.json"
