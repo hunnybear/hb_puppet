@@ -7,7 +7,7 @@ defaults:  # Used for any hierarchy level that omits these keys.
 hierarchy:
 
   - name: "per-Node data" 
-    path: "data/nodes/%{trusted.certname}.json"
+    path: "nodes/%{trusted.certname}.json"
 
   - name: "Per-OS defaults"
     path: "os/%{facts.os.family}.json"
