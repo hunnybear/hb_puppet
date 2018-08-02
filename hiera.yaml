@@ -9,6 +9,9 @@ hierarchy:
   - name: "per-Node data" 
     path: "nodes/%{trusted.certname}.json"
 
+  - name: "per-Role data"
+    path: "roles/%{role}.json"
+
   - name: "Per-OS defaults"
     path: "os/%{facts.os.family}.json"
 
