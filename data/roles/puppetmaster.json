@@ -5,24 +5,14 @@
 	"puppet::server_reports": "store",
 	"hiera::version": 5,
 	"hiera::defaults": {
-		"datadir": "data"
+		"datadir": "data",
+		"data_hash": "json_data"
 	},
 	"hiera::backends": ["json", "eyaml"],
 	"hiera::hierarchy": [
-		{
-			"name":  "Role yaml",
-			"path":  "roles/%{::role}"
-		},
         {
-        	"name":  "Nodes yaml", 
-        	"paths": [
-        		"nodes/%{::trusted.certname}",
-        		"nodes/%{::osfamily}.yaml"
-        	]
-    	},
-        {
-        	"name":  "Default yaml file", 
-        	"path":  "common"
+        	"name":  "Default json file", 
+        	"path":  "common.json"
         }
 	]
 }

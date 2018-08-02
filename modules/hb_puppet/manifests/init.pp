@@ -1,18 +1,24 @@
-class hb_puppet() {
+class hb_puppet(
+	$bootstrap_puppet_config={'server'=>false, 'agent'=>false}
+	$bootstrap_hiera_config={}
+) {
 	include hb_python
 
 	if $::bootstrap {
 		# setup puppet config only
 		class {'puppet':
-			server					=> false,
-			agent					=> false,
-			server_external_nodes	=> "puppet_enc"
+			* => $bootstrap_puppet_config
 		}
+
+		class {'hiera':
+			* => $bootstrap_hiera_config
+		}
+
 	} else {
 		include puppet
+		include hiera
 	}
 
-	include hiera
 
 	# TODO datafy url
 	# TODO figure out whether I can work my way around doing the hb_python (the

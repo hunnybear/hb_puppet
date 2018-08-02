@@ -1,0 +1,34 @@
+{
+  "name": "puppetlabs-ntp",
+  "version": "6.1.0",
+  "author": "Puppet Inc",
+  "summary": "Installs, configures, and manages the NTP service.",
+  "license": "Apache-2.0",
+  "source": "https://github.com/puppetlabs/puppetlabs-ntp",
+  "project_page": "https://github.com/puppetlabs/puppetlabs-ntp",
+  "dependencies": [
+    { "name":"puppetlabs/stdlib","version_requirement":">= 4.13.1 < 5.0.0" }
+  ],
+  "data_provider": "hiera",
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 5.0.0"
+    }
+  ],
+  "description": "Module for managing specific puppet configs for my use."
+}
