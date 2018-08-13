@@ -1,5 +1,7 @@
 node default {
-	if not $::bootstrap{
+	if $::bootstrap{
+		$role = 'puppetmaster'
+	} else {
 		if $role {
 			include "role_${role}"
 		}
