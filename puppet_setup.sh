@@ -65,7 +65,7 @@ function main() {
 	# Removing some of the server-specific things, because those can be added by the bootstrap
 	# yum install mod_passenger puppetdb puppet-dashboard mariadb-server mod_ssl
 
-	yum install git puppetserver
+	yum -y install git puppetserver
 
 	setup_env
 
@@ -78,8 +78,10 @@ function main() {
 	fi
 	if [[ $show_diff -ne 0 ]]; then
 		apply_args="${apply_args} --show_diff"
-	fi 	
-	puppet apply ${apply_args} -e "include role_puppetmaster::bootstrap"
+	fi
+
+	# bash hack because need to redo env args
+	bash -c "puppet apply ${apply_args} -e \"include role_puppetmaster::bootstrap\""
 
 }
 
