@@ -17,6 +17,7 @@
 		"data_hash": "json_data"
 	},
 	"hiera::backends": ["json", "eyaml"],
+	"hiera::backend_options": {"json": {}, "eyaml":{}}
 	"hiera::hierarchy": [
         {
         	"name":  "Default json file", 
