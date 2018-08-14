@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# This is built for puppet 4.10 on centos 7.5, so the path to the puppet binary
+# might be wrong on other systems, and I'm not planning on making this more 
+# flexible without any reason.
+
 BOOTSTRAP_ENV="bootstrap"
 ENV_PATH="/etc/puppetlabs/code/environments/${BOOTSTRAP_ENV}"
 
@@ -29,10 +33,10 @@ function setup_env() {
 	# shouldn't just be git submodule'd) to be regularly checked for updates
 
 	git clone --recursive "https://github.com/hunnybear/hb_puppet.git" "/etc/puppetlabs/code/environments/${BOOTSTRAP_ENV}"
-	puppet module install --environment "$BOOTSTRAP_ENV" puppet-hiera
-	puppet module install --environment "$BOOTSTRAP_ENV" theforeman-puppet
-	puppet module install --environment "$BOOTSTRAP_ENV" theforeman-git
-	puppet module install --environment "$BOOTSTRAP_ENV" stahnma-epel --version 1.3.1
+	/opt/puppetlabs/bin/puppet module install --environment "$BOOTSTRAP_ENV" puppet-hiera
+	/opt/puppetlabs/bin/puppet module install --environment "$BOOTSTRAP_ENV" theforeman-puppet
+	/opt/puppetlabs/bin/puppet module install --environment "$BOOTSTRAP_ENV" theforeman-git
+	/opt/puppetlabs/bin/puppet module install --environment "$BOOTSTRAP_ENV" stahnma-epel --version 1.3.1
 
 }
 
@@ -80,8 +84,7 @@ function main() {
 		apply_args="${apply_args} --show_diff"
 	fi
 
-	# bash hack because need to redo env args
-	bash -c "puppet apply ${apply_args} -e \"include role_puppetmaster::bootstrap\""
+	/opt/puppetlabs/bin/puppet apply ${apply_args} -e "include role_puppetmaster::bootstrap"
 
 }
 
