@@ -1,27 +1,27 @@
 {
-	"puppet::server": true,
-	"puppet::server_external_nodes": "${dir}/puppet_enc.py",
-	"puppet::server_foreman": false,
-	"puppet::server_git_repo": true,
-	"puppet::server_reports": "store",
-	"hb_puppet::environment_default_source": "https://github.com/hunnybear/hb_puppet.git",
-	"hb_puppet::environments": {
-		"production": {},
-		"dev": {
-			"branch": "dev"
-		}
-	},
-	"hiera::version": 5,
-	"hiera::defaults": {
-		"datadir": "data",
-		"data_hash": "json_data"
-	},
-	"hiera::backends": ["json", "eyaml"],
-	"hiera::backend_options": {"json": {}, "eyaml":{}}
-	"hiera::hierarchy": [
-        {
-        	"name":  "Default json file", 
-        	"path":  "common.json"
+    "puppet::server": true,
+    "puppet::server_external_nodes": "${dir}/puppet_enc.py",
+    "puppet::server_foreman": false,
+    "puppet::server_git_repo": true,
+    "puppet::server_reports": "store",
+    "hb_puppet::environment_default_source": "https://github.com/hunnybear/hb_puppet.git",
+    "hb_puppet::environments": {
+        "production": {},
+        "dev": {
+            "branch": "dev"
         }
-	]
+    },
+    "hiera::version": 5,
+    "hiera::defaults": {
+        "datadir": "data",
+        "data_hash": "json_data"
+    },
+    "hiera::backends": ["json", "eyaml"],
+    "hiera::backend_options": {"json": {}, "eyaml":{}},
+    "hiera::hierarchy": [
+        {
+            "name":  "Default json file", 
+            "path":  "common.json"
+        }
+    ]
 }
