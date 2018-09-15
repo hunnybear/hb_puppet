@@ -1,8 +1,7 @@
 node default {
-	if $::bootstrap{
-		$role = 'puppetmaster'
-	}
 	if $role {
-			include "role_${role}"
+		include "role_${role}"
+	} else {
+		Notify{'No role found! [in site.pp]':}
 	}
 }
