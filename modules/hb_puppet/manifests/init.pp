@@ -3,6 +3,5 @@ class hb_puppet(
 	$bootstrap_hiera_config={}
 ) {
 	
-
-	include puppet_agent
+	include hb_puppet::core
 }
