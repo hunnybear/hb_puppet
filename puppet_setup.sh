@@ -7,6 +7,8 @@
 BOOTSTRAP_ENV="bootstrap"
 ENV_PATH="/etc/puppetlabs/code/environments/${BOOTSTRAP_ENV}"
 
+
+
 function setup_env() {
 	local start_wd=$(pwd)
 	local status_res
@@ -33,10 +35,10 @@ function setup_env() {
 	# shouldn't just be git submodule'd) to be regularly checked for updates
 
 	git clone --recursive "https://github.com/hunnybear/hb_puppet.git" "/etc/puppetlabs/code/environments/${BOOTSTRAP_ENV}"
-	/opt/puppetlabs/bin/puppet module install --environment "$BOOTSTRAP_ENV" puppet-hiera
-	/opt/puppetlabs/bin/puppet module install --environment "$BOOTSTRAP_ENV" theforeman-puppet
-	/opt/puppetlabs/bin/puppet module install --environment "$BOOTSTRAP_ENV" theforeman-git
-	/opt/puppetlabs/bin/puppet module install --environment "$BOOTSTRAP_ENV" stahnma-epel --version 1.3.1
+	/opt/puppetlabs/bin/puppet module install --environment "$BOOTSTRAP_ENV" puppet-hiera --verbose
+	/opt/puppetlabs/bin/puppet module install --environment "$BOOTSTRAP_ENV" theforeman-git --verbose
+	/opt/puppetlabs/bin/puppet module install --environment "$BOOTSTRAP_ENV" stahnma-epel --verbose --version 1.3.1
+	/opt/puppetlabs/bin/puppet module install --environment "$BOOTSTRAP_ENV" theforeman-puppet --verbose
 
 }
 
@@ -74,8 +76,7 @@ function main() {
 	setup_env
 
 	# WIP, eventually remove noop
-	FACTER_bootstrap=true
-	FACTER_role=puppetmaster
+	
 	apply_args="--environment ${BOOTSTRAP_ENV}"
 	if [[ $noop -ne 0 ]]; then
 		apply_args="${apply_args} --noop"
@@ -84,7 +85,9 @@ function main() {
 		apply_args="${apply_args} --show_diff"
 	fi
 
-	/opt/puppetlabs/bin/puppet apply ${apply_args} -e "include role_puppetmaster::bootstrap"
+	FACTER_bootstrap=true
+	FACTER_role=puppetmaster
+	/opt/puppetlabs/bin/puppet apply ${apply_args} -e "include role_puppetmaster"
 
 }
 
