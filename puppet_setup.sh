@@ -36,8 +36,8 @@ function setup_env() {
 
 	git clone --recursive "https://github.com/hunnybear/hb_puppet.git" "/etc/puppetlabs/code/environments/${BOOTSTRAP_ENV}"
 	/opt/puppetlabs/bin/puppet module install --environment "$BOOTSTRAP_ENV" puppet-hiera --verbose
-	/opt/puppetlabs/bin/puppet module install --environment "$BOOTSTRAP_ENV" theforeman-git --verbose
 	/opt/puppetlabs/bin/puppet module install --environment "$BOOTSTRAP_ENV" stahnma-epel --verbose --version 1.3.1
+	/opt/puppetlabs/bin/puppet module install --environment "$BOOTSTRAP_ENV" theforeman-git --verbose
 	/opt/puppetlabs/bin/puppet module install --environment "$BOOTSTRAP_ENV" theforeman-puppet --verbose
 
 }
