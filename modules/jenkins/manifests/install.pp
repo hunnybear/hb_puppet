@@ -1,7 +1,7 @@
 class jenkins::install() {
 
 	yumrepo { 'jenkins':
-		baseurl    => 'https://pkg.jenkins-ci.org/redhat/jenkins.repo',
+		baseurl    => 'http://pkg.jenkins.io/redhat',
 		descr      => 'The jenkins repository',
 		enabled    => '1',
 		gpgcheck   => '1',
